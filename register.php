@@ -1,4 +1,4 @@
-<!--register.php-->
+<!-- register.php -->
 <?php
 require_once 'config.php';
 
@@ -9,15 +9,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $stmt = $pdo->prepare("INSERT INTO users (nama_lengkap, nomor_telp, email, username, password) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO users (nama_lengkap, nomor_telp, email, username, password) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $nama_lengkap, $nomor_telp, $email, $username, $password);
     
     try {
-        $stmt->execute([$nama_lengkap, $nomor_telp, $email, $username, $password]);
-        header("Location: login.php?message=Registration successful");
-        exit();
-    } catch(PDOException $e) {
+        if ($stmt->execute()) {
+            header("Location: login.php?message=Registration successful");
+            exit();
+        } else {
+            $error = "Registration failed: " . $conn->error;
+        }
+    } catch(Exception $e) {
         $error = "Registration failed: " . $e->getMessage();
     }
+    $stmt->close();
 }
 ?>
 

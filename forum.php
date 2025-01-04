@@ -11,14 +11,21 @@ if (!isset($_SESSION['user_id'])) {
 include 'includes/navbar.php';
 
 // Fetch messages with user information
-$stmt = $pdo->query("
+$query = "
     SELECT m.*, u.username, u.profile_photo 
     FROM messages m 
     JOIN users u ON m.user_id = u.id 
     ORDER BY m.created_at DESC 
     LIMIT 100
-");
-$messages = $stmt->fetchAll();
+";
+$result = $conn->query($query);
+$messages = [];
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $messages[] = $row;
+    }
+    $result->free();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -143,14 +150,9 @@ $messages = $stmt->fetchAll();
                     if (data.success) {
                         messageInput.value = ''; // Clear input
                         updateMessages();
-                    } else {
-                        alert('Error sending message. Please try again.');
                     }
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error sending message. Please try again.');
-                });
+                
             });
 
             // Function to update messages

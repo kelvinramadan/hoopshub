@@ -1,4 +1,4 @@
-<!--navbar.php-->
+<!-- includes/navbar.php -->
 <?php
 require_once 'config.php';
 
@@ -58,8 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profile_photo'])) {
         
         // Update database
         $db_path = 'uploads/' . $filename;
-        $stmt = $pdo->prepare("UPDATE users SET profile_photo = ? WHERE id = ?");
-        $stmt->execute([$db_path, $_SESSION['user_id']]);
+        $stmt = $conn->prepare("UPDATE users SET profile_photo = ? WHERE id = ?");
+        $stmt->bind_param("si", $db_path, $_SESSION['user_id']);
+        $stmt->execute();
+        $stmt->close();
         
         // Update session
         $_SESSION['profile_photo'] = $db_path;
@@ -76,6 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profile_photo'])) {
     echo json_encode($response);
     exit;
 }
+
+// Rest of the navbar.php HTML code remains the same as in your original file
 ?>
 
 <!DOCTYPE html>
@@ -365,7 +369,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profile_photo'])) {
                         <a class="nav-link" href="index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="produk.php">Produk</a>
+                        <a class="nav-link" href="lapangan.php">Lapangan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="layanan.php">Layanan</a>

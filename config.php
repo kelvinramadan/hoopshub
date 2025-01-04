@@ -1,4 +1,4 @@
-<!--config.php-->
+<!-- config.php -->
 <?php
 session_start();
 $host = 'localhost';
@@ -7,9 +7,11 @@ $username = 'root';
 $password = '';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-} catch(PDOException $e) {
+    $conn = new mysqli($host, $username, $password, $dbname); // Ubah $mysqli menjadi $conn
+    if ($conn->connect_error) {
+        throw new Exception("Connection failed: " . $conn->connect_error);
+    }
+    $conn->set_charset("utf8mb4");
+} catch(Exception $e) {
     die("Connection failed: " . $e->getMessage());
 }

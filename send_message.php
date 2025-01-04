@@ -1,5 +1,5 @@
+<!--send_message.php-->
 <?php
-// send_message.php
 require_once 'config.php';
 
 header('Content-Type: application/json');
@@ -13,15 +13,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message'])) {
     $message = trim($_POST['message']);
     
     if (!empty($message)) {
-        try {
-            $stmt = $pdo->prepare("INSERT INTO messages (user_id, message, created_at) VALUES (?, ?, NOW())");
-            $stmt->execute([$_SESSION['user_id'], $message]);
-            
+        $stmt = $conn->prepare("INSERT INTO messages (user_id, message, created_at) VALUES (?, ?, NOW())");
+        $stmt->bind_param("is", $_SESSION['user_id'], $message);
+        
+        if ($stmt->execute()) {
             echo json_encode(['success' => true]);
-        } catch (PDOException $e) {
-            error_log($e->getMessage());
+        } else {
+            error_log($conn->error);
             echo json_encode(['success' => false, 'message' => 'Database error']);
         }
+        $stmt->close();
     } else {
         echo json_encode(['success' => false, 'message' => 'Empty message']);
     }

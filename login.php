@@ -1,5 +1,4 @@
-<!--login.php-->
-
+<!-- login.php -->
 <?php
 require_once 'config.php';
 
@@ -7,9 +6,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
-    $stmt->execute([$username]);
-    $user = $stmt->fetch();
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
@@ -17,13 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['nama_lengkap'] = $user['nama_lengkap'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['nomor_telp'] = $user['nomor_telp'];
-        $_SESSION['profile_photo'] = $user['profile_photo']; // Add this line for profile photo
+        $_SESSION['profile_photo'] = $user['profile_photo'];
 
         header("Location: index.php");
         exit();
     } else {
         $error = "Invalid username or password";
     }
+    $stmt->close();
 }
 ?>
 
