@@ -60,25 +60,6 @@ include 'navbar.php';
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 20px;
-            background: #f0f2f5;
-        }
-        .admin-container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-top: 20px;
-        }
-        .table-responsive {
-            margin-top: 20px;
-        }
-        .action-buttons {
-            white-space: nowrap;
-        }
-    </style>
 </head>
 <body>
     <div class="container">

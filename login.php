@@ -30,29 +30,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - NBA Fan Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="loginregist.css">
 </head>
-<body class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h2 class="mb-4">Login</h2>
-            <?php if (isset($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
-            <?php if (isset($_GET['message'])) echo "<div class='alert alert-success'>".$_GET['message']."</div>"; ?>
-            <form method="POST">
-                <div class="mb-3">
-                    <label class="form-label">Username:</label>
-                    <input type="text" name="username" class="form-control" required>
+<body>
+<div class="images/nba.jpg"></div>
+    <div class="container">
+        <div class="auth-container">
+            <!-- Side Image Container -->
+            <div class="auth-image">
+                <div class="images/lamelo.png"></div>
+            </div>
+            
+            <div class="auth-form">
+                <!-- NBA Logo -->
+                <div class="logo-container">
+                    <img src="images/logo.png" alt="NBA Logo" class="nba-logo">
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Password:</label>
-                    <input type="password" name="password" class="form-control" required>
+                <h2>Welcome Back</h2>
+                
+                <?php if (isset($error)): ?>
+                    <div class="alert alert-danger"><?php echo $error; ?></div>
+                <?php endif; ?>
+                
+                <?php if (isset($_GET['message'])): ?>
+                    <div class="alert alert-success"><?php echo htmlspecialchars($_GET['message']); ?></div>
+                <?php endif; ?>
+
+                <form method="POST">
+                    <div class="form-group">
+                        <label class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                </form>
+
+                <div class="auth-links">
+                    <p>Don't have an account? <a href="register.php">Register here</a></p>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
-            <p class="mt-3">Don't have an account? <a href="register.php">Register here</a></p>
+            </div>
         </div>
     </div>
 </body>
