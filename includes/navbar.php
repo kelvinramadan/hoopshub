@@ -372,7 +372,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profile_photo'])) {
                         <a class="nav-link" href="lapangan.php">Lapangan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="layanan.php">Layanan</a>
+                        <a class="nav-link" href="my_bookings.php">Riwayat</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="forum.php">Forum</a>

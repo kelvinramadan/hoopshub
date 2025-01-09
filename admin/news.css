@@ -1,0 +1,250 @@
+/* news.css */
+:root {
+    --primary: #2c7da0;
+    --primary-hover: #1a6985;
+    --secondary: #6c757d;
+    --secondary-hover: #5a6268;
+    --success: #28a745;
+    --danger: #dc3545;
+    --danger-hover: #c82333;
+    --dark: #343a40;
+    --light: #f8f9fa;
+    --border: #dee2e6;
+}
+
+/* Basic Reset and Body Styles */
+body.container.mt-5 {
+    background-color: #f5f7fa;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+/* Card-like Container */
+.mt-4 {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Alert Styles */
+.alert {
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.alert-success {
+    background: #d1e7dd;
+    color: #0f5132;
+    border-left: 4px solid #198754;
+}
+
+/* Header Section */
+.d-flex.justify-content-between.align-items-center.mb-4 {
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: var(--dark);
+    font-weight: 600;
+    margin: 0;
+    font-size: 1.75rem;
+}
+
+/* Form Styles */
+.mb-3 {
+    margin-bottom: 1.5rem !important;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.form-control {
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(44, 125, 160, 0.25);
+}
+
+textarea.form-control {
+    min-height: 120px;
+}
+
+/* Image Preview */
+.mb-2 img {
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.mb-2 img:hover {
+    transform: scale(1.05);
+}
+
+/* File Input Styling */
+input[type="file"].form-control {
+    padding: 0.5rem;
+    background-color: var(--light);
+}
+
+/* Button Styles */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-hover), var(--primary));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(44, 125, 160, 0.2);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: var(--secondary-hover);
+    transform: translateY(-1px);
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: var(--danger-hover);
+    transform: translateY(-1px);
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* News List Section */
+h3.mt-5 {
+    color: var(--dark);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+}
+
+/* Table Styles */
+.table-responsive {
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.table th {
+    background: var(--light);
+    color: var(--dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    padding: 1rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.table td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.table td .btn {
+    margin-right: 0.5rem;
+}
+
+.table td .btn:last-child {
+    margin-right: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .mt-4 {
+        padding: 1rem;
+    }
+
+    .table-responsive {
+        margin: 0 -1rem;
+        width: calc(100% + 2rem);
+        border-radius: 0;
+    }
+
+    .table td .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .d-flex.justify-content-between.align-items-center {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-hover);
+}
